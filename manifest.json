@@ -1,5 +1,5 @@
 {
-    "name": "Secret Nemesis",
+    "name": "Hudson Highlight",
     "version": "0.0.1",
     "manifest_version": 2,
     "description" : "Description ...",
@@ -9,8 +9,7 @@
             "19": "images/19x19.png",
             "38": "images/38x38.png"
         },
-        "default_title": "Enable Controller",
-        "default_popup": "popup.html"
+        "default_title": "Enable Highlighting"
     },
     "background": {
         "scripts": ["background.js"],
@@ -19,6 +18,7 @@
     "content_scripts": [
         {
             "matches": ["http://*/*", "https://*/*"],
+            "css": ["style.css"],
             "js": ["jquery-1.10.2.min.js", "content.js"]
         }
     ],

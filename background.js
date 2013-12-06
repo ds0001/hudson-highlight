@@ -1,47 +1,31 @@
 // listening for an event / one-time requests
-// coming from the popup
 
-chrome.extension.onMessage.addListener(function(request, sender, sendResponse) {
-    switch(request.type) {
-        case "toggleController":
-            toggleController();
-        break;
-    }
-    return true;
+chrome.tabs.query({'active': true}, function(tabs) {
+    // runs when extension is activated
+    console.log('active');
 });
 
-var status = false;
-var isGamepadConnected = function() {
-    // Place gamepad detection code here.
-    // Returns true for now.
-    return true;
-};
+
+chrome.browserAction.onClicked.addListener(function(tab) {
+  // send message to content
+  chrome.tabs.sendMessage(tab.id, {type: "toggleHightlight"}, function(response) {
+      toggleController(tab, response.state);
+  });
+});
+
 
 // send a message to the content script
-var toggleController = function() {
-    if(isGamepadConnected()) {
-        chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-            chrome.tabs.sendMessage(tabs[0].id, {type: "toggleController"}, function(response) {
-                console.log('done');
-            });
-            // setting icon
-            chrome.browserAction.setIcon({
-                path: "images/38x38-on.png",
-                tabId: tabs[0].id
-            });
-            // setting a badge
-            chrome.browserAction.setBadgeText({text: "1up"});
-        });
-    } else {
-        console.log('false');
-        chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-            // setting icon
-            chrome.browserAction.setIcon({
-                path: "images/38x38.png",
-                tabId: tabs[0].id
-            });
-            // setting a badge
-            chrome.browserAction.setBadgeText({text: ""});
-        });
-    }
-}
+var toggleController = function(tab, state) {
+  // setting icon
+  if(state === 'enable') {
+    chrome.browserAction.setIcon({
+        path: "images/38x38-on.png",
+        tabId: tab.id
+    });
+  } else {
+    chrome.browserAction.setIcon({
+        path: "images/38x38.png",
+        tabId: tab.id
+    });
+  }
+};
