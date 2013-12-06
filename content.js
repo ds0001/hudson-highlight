@@ -1,4 +1,5 @@
-var keywords = [
+
+var defautKeywords = [
     ['cannot','bold negative'],
     ['done','bold positive'],
     ['without errors','bold positive'],
@@ -12,13 +13,15 @@ var keywords = [
 
 ];
 
-var highlight = function() {
+
+var highlight = function(keywords) {
     var $pre =  $('pre'),
         content = $pre.html(),
         i=0,
         re='';
 
     for(i=0;i<keywords.length;i++) {
+        keywords[i] = keywords[i].split(',');
         re = new RegExp(keywords[i][0],"gi");
         content = content.replace(re, '<span class="'+keywords[i][1]+'">'+keywords[i][0]+'</span>');
     }
@@ -36,7 +39,7 @@ chrome.extension.onMessage.addListener(function(message, sender, sendResponse) {
             } else {
                 $($body).addClass('hudson-highlight');
                 sendResponse({state: "enable"});
-                highlight();
+                highlight(message.keywords);
             }
         break;
     }

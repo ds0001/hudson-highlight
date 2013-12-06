@@ -1,17 +1,21 @@
-.hudson-highlight .bold {
+.hudson-highlight .positive {
   font-weight: bold;
   font-size: 25px;
-}
-.hudson-highlight .positive {
   background-color: #27ae1d;
 }
 .hudson-highlight .negative {
+  font-weight: bold;
+  font-size: 25px;
   background-color: #ae1d1d;
 }
 .hudson-highlight .warn {
-  background-color: #d47106;
+  font-weight: bold;
+  font-size: 25px;
+  background-color: #d04919;
 }
 .hudson-highlight .highlight {
+  font-weight: bold;
+  font-size: 25px;
   background-color: #d48e06;
   color: #000;
 }

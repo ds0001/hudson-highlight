@@ -9,7 +9,8 @@
             "19": "images/19x19.png",
             "38": "images/38x38.png"
         },
-        "default_title": "Enable Highlighting"
+        "default_title": "Enable Highlighting",
+        "default_popup": "popup.html"
     },
     "background": {
         "scripts": ["background.js"],
