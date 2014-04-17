@@ -1,7 +1,7 @@
 hudson-highlight
 ================
 
-Hudson output highlighting
+Chrome extension for Hudson output highlighting
 
 Users can now hightlight console output text from your hudson jobs.
 Click the plugin icon and enter keywords to highlight and its

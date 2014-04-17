@@ -24,9 +24,6 @@
         }
     ],
     "permissions": [
-      "tabs",
-      "activeTab",
-      "bookmarks",
-      "unlimitedStorage"
+      "activeTab"
     ]
 }
