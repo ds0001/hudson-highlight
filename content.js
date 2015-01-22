@@ -5,14 +5,12 @@ var defautKeywords = [
     ['without errors','bold positive'],
     ['error','bold negative'],
     ['failure','bold negative'],
-    ['rpms','bold highlight'],
     ['running','bold positive'],
     ['success','bold positive'],
     ['warning','bold warn'],
-    ['wrong','bold negative']
-
+    ['wrong','bold negative'],
+    ['\[.*?[.]nytimes[.]com\]','highlight']
 ];
-
 
 var highlight = function(keywords) {
     var $pre =  $('pre'),
@@ -25,6 +23,8 @@ var highlight = function(keywords) {
         re = new RegExp(keywords[i][0],"gi");
         content = content.replace(re, '<span class="'+keywords[i][1]+'">'+keywords[i][0]+'</span>');
     }
+    content = content.replace(/\\n/ig, '<br>');
+    content = content.replace(/\\"/g, '"');
     $($pre).html(content);
 };
 
